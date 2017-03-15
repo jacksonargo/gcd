@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.2
+#!/usr/bin/env python3
 #
 # Outputs the GCD of two integers
 # by Jackson Argo 20120819 <jargo@uga.edu>
@@ -27,18 +27,17 @@ if (n1 == 0) or (n2 == 0) :
     print_results (0, 0, n1, 0, n2)
     exit (0)
 
-# Check if the integers are the same
-if (abs (n1) == abs (n2)) :
-    # We want to return a positive GCD
-    if (n1 > 0) :
-        print_results (n1, 1, n1, 0, n2)
-        exit (0)
-    elif (n2 > 0) :
-        print_results (n2, 0, n1, 1, n2)
-        exit (0)
-    else :
-        print_results (n1, -1, n1, 0, n2)
-        exit (0)
+# Check if n1 divides n2
+if (n1 % n2 == 0) :
+    gcd = abs(n2)
+    print_results (gcd, 0, n1, n2//gcd, n2)
+    exit (0)
+
+# Check if n2 divides n1
+if (n2 % n1 == 0) :
+    gcd = abs(n1)
+    print_results (gcd, n1//gcd, n1, 0, n2)
+    exit (0)
 
 # Now we'll define some more variables
 a = [0, 1, 1] # We'll use this array to calculate the coefficients of the integers
@@ -95,6 +94,7 @@ print_results (gcd, c1, n1, c2, n2)
 if (gcd != ((c1 * n1) + (c2 * n2))) :
     print ("\tError! Insane results returned!")
     print ("Try using smaller numbers.")
+    exit(1)
 
 # Otherwise, exit true to operating system
 else :

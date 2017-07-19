@@ -2,6 +2,7 @@
 #
 # Outputs the GCD of two integers
 # by Jackson Argo 20120819 <jargo@uga.edu>
+import sys
 def gcd(n1, n2):
     reply = ''
     # Lets define a format for printing out results
@@ -75,7 +76,7 @@ def gcd(n1, n2):
         c2 *= -1
     
     # Print the results to the user
-    reply += "\nResults"
+    reply += "\nResults\n\t"
     reply += print_results(gcd, c1, n1, c2, n2)
     
     # Check for sanity
@@ -83,3 +84,6 @@ def gcd(n1, n2):
         print ("\tError! Insane results returned!")
         print ("Try using smaller numbers.")
     return reply
+
+if __name__ == "__main__":
+    print gcd(int(sys.argv[1]),int(sys.argv[2]))
